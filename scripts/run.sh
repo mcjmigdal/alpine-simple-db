@@ -1,5 +1,13 @@
 #!/bin/sh
 
+source /scripts/env.ini
+MYSQL_ROOT_PASSWORD="jaspar"
+MYSQL_DATABASE="jaspar"
+MYSQL_USER="mysql"
+MYSQL_PASSWORD="jaspar"
+MYSQL_CHARSET="utf8"
+MYSQL_COLLATION="utf8_general_ci"
+
 # execute any pre-init scripts
 for i in /scripts/pre-init.d/*sh
 do
@@ -27,11 +35,6 @@ else
 	chown -R mysql:mysql /var/lib/mysql
 
 	mysql_install_db --user=mysql --ldata=/var/lib/mysql > /dev/null
-
-	if [ "$MYSQL_ROOT_PASSWORD" = "" ]; then
-		MYSQL_ROOT_PASSWORD=`pwgen 16 1`
-		echo "[i] MySQL root Password: $MYSQL_ROOT_PASSWORD"
-	fi
 
 	MYSQL_DATABASE=${MYSQL_DATABASE:-""}
 	MYSQL_USER=${MYSQL_USER:-""}
