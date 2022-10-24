@@ -1,6 +1,6 @@
 # Build docker image
 Setup database details in `scripts/env.ini`.
-Data saved as sql dump file goes into `` docker-entrypoint-initdb.d.
+Data saved as sql dump file goes into `docker-entrypoint-initdb.d`.
 `docker build -t mcjmigdal/alpine-simple-db .`
 
 # Run container and interact with it
